@@ -2,6 +2,9 @@
 
 namespace ms {
 
+Board::Field::Field()
+    : hasMine(false), hasFlag(false), isRevealed(false), minesAround(0) {}
+
 Board::Board()
     : storage(Vector2u<u16>(6, 7)), diff(DEBUG), totalMines(2),
       firstMoveDone(false), state(RUNNING), revealedCount(1) {
