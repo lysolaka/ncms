@@ -11,10 +11,10 @@ private:
   V **mtx;
 
 public:
-  const Vector2u<S> size;
+  const Vector2<S> size;
 
   Matrix() = delete;
-  Matrix(Vector2u<S> const &_size) : size(_size) {
+  Matrix(Vector2<S> const &_size) : size(_size) {
     mtx = new V *[size.x];
 
     for (S i = 0; i < size.x; i++) {
@@ -30,13 +30,13 @@ public:
     delete[] mtx;
   }
 
-  V &operator[](Vector2u<S> const &pos) { return mtx[pos.x][pos.y]; }
+  V &operator[](Vector2<S> const &pos) { return mtx[pos.x][pos.y]; }
   V &operator[](S x, S y) { return mtx[x][y]; }
 
-  const V &operator[](Vector2u<S> const &pos) const { return mtx[pos.x][pos.y]; }
+  const V &operator[](Vector2<S> const &pos) const { return mtx[pos.x][pos.y]; }
   const V &operator[](S x, S y) const { return mtx[x][y]; }
 
-  bool isInbound(Vector2u<S> const &pos) const {
+  bool isInbound(Vector2<S> const &pos) const {
     if (pos.x >= size.x || pos.y >= size.y)
       return false;
     else

@@ -12,14 +12,14 @@ void DebugDisplay::display() const {
     std::cout << y << ' ';
     for (ms::u16 x = 0; x < board.getWidth(); x++) {
       std::cout << '[';
-      displayField(ms::Vector2u<ms::u16>(x, y));
+      displayField(ms::Vector2u(x, y));
       std::cout << ']';
     }
     std::cout << '\n';
   }
 }
 
-void DebugDisplay::displayField(ms::Vector2u<ms::u16> const &pos) const {
+void DebugDisplay::displayField(ms::Vector2u const &pos) const {
   if (board.hasMine(pos)) {
 #ifdef __USE_COLOR
     std::cout << "\e[1;35m";

@@ -10,7 +10,7 @@ public:
   void display() const;
 
 private:
-  void displayField(ms::Vector2u<ms::u16> const &pos) const;
+  void displayField(ms::Vector2u const &pos) const;
 };
 } // namespace cli
 

@@ -6,7 +6,7 @@ Board::Field::Field()
     : hasMine(false), hasFlag(false), isRevealed(false), minesAround(0) {}
 
 Board::Board()
-    : storage(Vector2u<u16>(6, 7)), diff(DEBUG), totalMines(2),
+    : storage(Vector2u(6, 7)), diff(DEBUG), totalMines(2),
       firstMoveDone(false), state(RUNNING), revealedCount(1) {
   storage[0, 0].hasMine = true;
 
@@ -16,7 +16,7 @@ Board::Board()
   storage[2, 0].hasFlag = true;
 }
 
-Board::Board(Vector2u<u16> _size, Difficulty _diff)
+Board::Board(Vector2u _size, Difficulty _diff)
     : storage(_size), diff(_diff), firstMoveDone(false), state(RUNNING),
       totalMines(0), revealedCount(0) {
 
@@ -56,7 +56,7 @@ Board::Board(Vector2u<u16> _size, Difficulty _diff)
   for (u32 i = 0; i < totalMines; i++) {
     bool placed = false;
     do {
-      Vector2u<u16> pos(randomProvider<u16>(storage.size.x - 1),
+      Vector2u pos(randomProvider<u16>(storage.size.x - 1),
                         randomProvider<u16>(storage.size.y - 1));
       if (!hasMine(pos)) {
         storage[pos].hasMine = true;
@@ -67,7 +67,7 @@ Board::Board(Vector2u<u16> _size, Difficulty _diff)
 
   for (u16 x = 0; x < storage.size.x; x++) {
     for (u16 y = 0; y < storage.size.y; y++) {
-      storage[x, y].minesAround = countMines(Vector2u<u16>(x, y));
+      storage[x, y].minesAround = countMines(Vector2u(x, y));
     }
   }
 }
@@ -78,23 +78,23 @@ u16 Board::getTotalMines() const { return totalMines; }
 Board::Difficulty Board::getDifficulty() const { return diff; }
 Board::GameState Board::getGameState() const { return state; }
 
-bool Board::hasMine(Vector2u<u16> const &pos) const {
+bool Board::hasMine(Vector2u const &pos) const {
   return storage[pos].hasMine;
 }
-bool Board::hasFlag(Vector2u<u16> const &pos) const {
+bool Board::hasFlag(Vector2u const &pos) const {
   return storage[pos].hasFlag;
 }
-bool Board::isRevealed(Vector2u<u16> const &pos) const {
+bool Board::isRevealed(Vector2u const &pos) const {
   return storage[pos].isRevealed;
 }
 
-u16 Board::countMines(Vector2u<u16> const &pos) const {
+u16 Board::countMines(Vector2u const &pos) const {
   u16 counter = 0;
   for (i16 x : {-1, 0, 1}) {
     for (i16 y : {-1, 0, 1}) {
-      if (storage.isInbound(Vector2u<u16>(pos.x + x, pos.y + y)) &&
+      if (storage.isInbound(Vector2u(pos.x + x, pos.y + y)) &&
           (x != 0 && y != 0)) {
-        if (hasMine(Vector2u<u16>(pos.x + x, pos.y + y)))
+        if (hasMine(Vector2u(pos.x + x, pos.y + y)))
           counter++;
       }
     }
@@ -102,7 +102,7 @@ u16 Board::countMines(Vector2u<u16> const &pos) const {
   return counter;
 }
 
-char Board::getFieldInfo(Vector2u<u16> const &pos) const {
+char Board::getFieldInfo(Vector2u const &pos) const {
   if (!storage.isInbound(pos))
     return '#';
   if (!isRevealed(pos)) {
@@ -120,11 +120,11 @@ char Board::getFieldInfo(Vector2u<u16> const &pos) const {
   }
 }
 
-void Board::toggleFlag(Vector2u<u16> const &pos) {
+void Board::toggleFlag(Vector2u const &pos) {
   storage[pos].hasFlag = !storage[pos].hasFlag;
 }
 
-void Board::revealField(Vector2u<u16> const &pos) {
+void Board::revealField(Vector2u const &pos) {
   if (isRevealed(pos) || !storage.isInbound(pos) || state != RUNNING ||
       hasFlag(pos))
     return;
@@ -136,7 +136,7 @@ void Board::revealField(Vector2u<u16> const &pos) {
     firstMoveDone = true;
     bool placed = false;
     do {
-      Vector2u<u16> tempPos(randomProvider<u16>(storage.size.x - 1),
+      Vector2u tempPos(randomProvider<u16>(storage.size.x - 1),
                             randomProvider<u16>(storage.size.y - 1));
       if (!hasMine(tempPos)) {
         storage[tempPos].hasMine = true;
@@ -151,7 +151,7 @@ void Board::revealField(Vector2u<u16> const &pos) {
   }
 }
 
-void Board::recursiveReveal(Vector2u<u16> const &pos) {
+void Board::recursiveReveal(Vector2u const &pos) {
   if (isRevealed(pos))
     return;
   if (hasMine(pos))
@@ -164,14 +164,14 @@ void Board::recursiveReveal(Vector2u<u16> const &pos) {
   if (storage[pos].minesAround != 0)
     return;
 
-  if (storage.isInbound(Vector2u<u16>(pos.x - 1, pos.y)))
-    recursiveReveal(Vector2u<u16>(pos.x - 1, pos.y));
-  if (storage.isInbound(Vector2u<u16>(pos.x + 1, pos.y)))
-    recursiveReveal(Vector2u<u16>(pos.x + 1, pos.y));
-  if (storage.isInbound(Vector2u<u16>(pos.x, pos.y - 1)))
-    recursiveReveal(Vector2u<u16>(pos.x, pos.y - 1));
-  if (storage.isInbound(Vector2u<u16>(pos.x, pos.y + 1)))
-    recursiveReveal(Vector2u<u16>(pos.x, pos.y + 1));
+  if (storage.isInbound(Vector2u(pos.x - 1, pos.y)))
+    recursiveReveal(Vector2u(pos.x - 1, pos.y));
+  if (storage.isInbound(Vector2u(pos.x + 1, pos.y)))
+    recursiveReveal(Vector2u(pos.x + 1, pos.y));
+  if (storage.isInbound(Vector2u(pos.x, pos.y - 1)))
+    recursiveReveal(Vector2u(pos.x, pos.y - 1));
+  if (storage.isInbound(Vector2u(pos.x, pos.y + 1)))
+    recursiveReveal(Vector2u(pos.x, pos.y + 1));
 }
 
 void Board::updateGameState() {

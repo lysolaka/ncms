@@ -1,17 +1,20 @@
 #include "Concepts.hpp"
+#include "Defs.hpp"
 
 #ifndef MSBITS_VECTOR_HPP
 #define MSBITS_VECTOR_HPP
 
 namespace ms {
 
-template <UInt T>
-struct Vector2u {
+template <Integral T>
+struct Vector2 {
   T x;
   T y;
 
-  Vector2u(T _x, T _y) : x(_x), y(_y) {}
+  Vector2(T _x, T _y) : x(_x), y(_y) {}
 };
+
+typedef Vector2<u16> Vector2u;
 
 } // namespace ms
 
