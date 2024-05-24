@@ -9,7 +9,8 @@ class DisplayBase {
     const Board &board;
   public:
     DisplayBase(Board const &_board);
-    virtual void display() const;
+    virtual void display() const = 0;
+    virtual ~DisplayBase() = default;
 };
 }
 
