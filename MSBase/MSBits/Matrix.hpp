@@ -1,5 +1,4 @@
 #include "Concepts.hpp"
-#include "Defs.hpp"
 #include "Vector.hpp"
 
 #ifndef MSBITS_MATRIX_HPP
@@ -7,15 +6,15 @@
 
 namespace ms {
 
-template <MatrixValueType V, UInt S = u16> class Matrix {
+template <MatrixValueType V, UInt S> class Matrix {
 private:
   V **mtx;
 
 public:
   const Vector2u<S> size;
 
-  Matrix<V, S>() = delete;
-  Matrix<V, S>(Vector2u<S> const &_size) : size(_size) {
+  Matrix() = delete;
+  Matrix(Vector2u<S> const &_size) : size(_size) {
     mtx = new V *[size.x];
 
     for (S i = 0; i < size.x; i++) {
@@ -23,7 +22,7 @@ public:
     }
   }
 
-  ~Matrix<V, S>() {
+  ~Matrix() {
     for (S i = 0; i < size.x; i++) {
       delete[] mtx[i];
     }
