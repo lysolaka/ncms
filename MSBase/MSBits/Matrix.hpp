@@ -40,7 +40,7 @@ public:
     if (pos.x >= size.x || pos.y >= size.y)
       return false;
     else
-     return true;
+      return true;
   }
 };
 

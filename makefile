@@ -19,6 +19,15 @@ ifeq ($(DISPLAY), cli_debug)
 	SRC += CLIDebugDisplay.cpp
 endif
 
+ifeq ($(DISPLAY), cli)
+	SRC += CLIDisplay.cpp
+endif
+
+ifeq ($(DISPLAY), cli_both)
+	SRC += CLIDebugDisplay.cpp
+	SRC += CLIDisplay.cpp
+endif
+
 # Objects
 OBJ := $(patsubst %.cpp, $(OBJDIR)/%.o, $(SRC))
 
@@ -33,14 +42,16 @@ endif
 all : $(EXE)
 
 $(EXE) : $(OBJ) | $(BINDIR)
-	$(CXX) $(LDFLAGS) $^ -o $@
+	@echo "Linking executable: $@"
+	@$(CXX) $(LDFLAGS) $^ -o $@
 
 $(OBJDIR)/%.o : %.cpp
-	mkdir -p $(@D)
-	$(CXX) $(PPFLAGS) $(CXXFLAGS) -c $< -o $@
+	@echo "CXX: $@"
+	@mkdir -p $(@D)
+	@$(CXX) $(PPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 $(BINDIR) :
-	mkdir -p $(BINDIR)
+	@mkdir -p $(BINDIR)
 
 clean :
 	@rm -rv $(BINDIR) $(OBJDIR)

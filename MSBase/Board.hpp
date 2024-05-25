@@ -51,6 +51,7 @@ public:
   void revealField(Vector2u const &pos);
 
   void updateGameState();
+  void revealAllMines();
 
 private:
   void recursiveReveal(Vector2u const &pos);

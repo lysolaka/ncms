@@ -6,14 +6,20 @@ Board::Field::Field()
     : hasMine(false), hasFlag(false), isRevealed(false), minesAround(0) {}
 
 Board::Board()
-    : storage(Vector2u(6, 7)), diff(DEBUG), totalMines(2),
-      firstMoveDone(false), state(RUNNING), revealedCount(1) {
+    : storage(Vector2u(6, 7)), diff(DEBUG), totalMines(2), firstMoveDone(false),
+      state(RUNNING), revealedCount(1) {
   storage[0, 0].hasMine = true;
 
   storage[1, 1].isRevealed = true;
 
   storage[2, 0].hasMine = true;
   storage[2, 0].hasFlag = true;
+
+  for (u16 x = 0; x < storage.size.x; x++) {
+    for (u16 y = 0; y < storage.size.y; y++) {
+      storage[x, y].minesAround = countMines(Vector2u(x, y));
+    }
+  }
 }
 
 Board::Board(Vector2u _size, Difficulty _diff)
@@ -57,7 +63,7 @@ Board::Board(Vector2u _size, Difficulty _diff)
     bool placed = false;
     do {
       Vector2u pos(randomProvider<u16>(storage.size.x - 1),
-                        randomProvider<u16>(storage.size.y - 1));
+                   randomProvider<u16>(storage.size.y - 1));
       if (!hasMine(pos)) {
         storage[pos].hasMine = true;
         placed = true;
@@ -78,12 +84,8 @@ u16 Board::getTotalMines() const { return totalMines; }
 Board::Difficulty Board::getDifficulty() const { return diff; }
 Board::GameState Board::getGameState() const { return state; }
 
-bool Board::hasMine(Vector2u const &pos) const {
-  return storage[pos].hasMine;
-}
-bool Board::hasFlag(Vector2u const &pos) const {
-  return storage[pos].hasFlag;
-}
+bool Board::hasMine(Vector2u const &pos) const { return storage[pos].hasMine; }
+bool Board::hasFlag(Vector2u const &pos) const { return storage[pos].hasFlag; }
 bool Board::isRevealed(Vector2u const &pos) const {
   return storage[pos].isRevealed;
 }
@@ -137,13 +139,20 @@ void Board::revealField(Vector2u const &pos) {
     bool placed = false;
     do {
       Vector2u tempPos(randomProvider<u16>(storage.size.x - 1),
-                            randomProvider<u16>(storage.size.y - 1));
+                       randomProvider<u16>(storage.size.y - 1));
       if (!hasMine(tempPos)) {
         storage[tempPos].hasMine = true;
         placed = true;
       }
     } while (!placed);
     storage[pos].hasMine = false;
+
+    for (u16 x = 0; x < storage.size.x; x++) {
+      for (u16 y = 0; y < storage.size.y; y++) {
+        storage[x, y].minesAround = countMines(Vector2u(x, y));
+      }
+    }
+
     recursiveReveal(pos);
   } else {
     storage[pos].isRevealed = true;
@@ -177,5 +186,14 @@ void Board::recursiveReveal(Vector2u const &pos) {
 void Board::updateGameState() {
   if (totalMines + revealedCount == storage.size.y * storage.size.x)
     state = FINISHED_WIN;
+}
+
+void Board::revealAllMines() {
+  for (u16 x = 0; x < storage.size.x; x++) {
+    for (u16 y = 0; y < storage.size.y; y++) {
+      if (hasMine(Vector2u(x, y)))
+        storage[x, y].isRevealed = true;
+    }
+  }
 }
 } // namespace ms
