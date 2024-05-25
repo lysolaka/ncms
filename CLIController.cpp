@@ -10,12 +10,9 @@ Controller::Controller(ms::Board &_board, ms::DisplayBase const &_display)
 void Controller::play() {
   std::string move;
 
-  cli::DebugDisplay dbd(board);
-
   while (board.getGameState() == ms::Board::RUNNING) {
     std::cout << '\n';
 
-    dbd.display();
     display.display();
 
     switch (status) {

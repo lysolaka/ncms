@@ -95,7 +95,7 @@ u16 Board::countMines(Vector2u const &pos) const {
   for (i16 x : {-1, 0, 1}) {
     for (i16 y : {-1, 0, 1}) {
       if (storage.isInbound(Vector2u(pos.x + x, pos.y + y)) &&
-          (x != 0 && y != 0)) {
+          !(x == 0 && y == 0)) {
         if (hasMine(Vector2u(pos.x + x, pos.y + y)))
           counter++;
       }
