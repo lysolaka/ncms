@@ -95,7 +95,7 @@ u16 Board::countMines(Vector2u const &pos) const {
   for (i16 x : {-1, 0, 1}) {
     for (i16 y : {-1, 0, 1}) {
       if (storage.isInbound(Vector2u(pos.x + x, pos.y + y)) &&
-          (x != 0 && y != 0)) {
+          !(x == 0 && y == 0)) {
         if (hasMine(Vector2u(pos.x + x, pos.y + y)))
           counter++;
       }
@@ -188,6 +188,10 @@ void Board::updateGameState() {
     state = FINISHED_WIN;
 }
 
+void Board::forceEndGame() {
+  state = FINISHED_LOSS;
+}
+
 void Board::revealAllMines() {
   for (u16 x = 0; x < storage.size.x; x++) {
     for (u16 y = 0; y < storage.size.y; y++) {
@@ -195,5 +199,9 @@ void Board::revealAllMines() {
         storage[x, y].isRevealed = true;
     }
   }
+}
+
+bool Board::isInbound(Vector2u const &pos) const {
+  return storage.isInbound(pos);
 }
 } // namespace ms

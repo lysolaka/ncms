@@ -51,7 +51,10 @@ public:
   void revealField(Vector2u const &pos);
 
   void updateGameState();
+  void forceEndGame();
   void revealAllMines();
+
+  bool isInbound(Vector2u const &pos) const;
 
 private:
   void recursiveReveal(Vector2u const &pos);
