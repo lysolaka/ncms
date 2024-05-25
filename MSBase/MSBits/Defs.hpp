@@ -1,8 +1,6 @@
 #ifndef MSBITS_DEFS_HPP
 #define MSBITS_DEFS_HPP
 
-namespace ms {
-
 // Integer typedefs
 typedef short i16;
 typedef int i32;
@@ -16,7 +14,5 @@ typedef unsigned long u64;
 // Floating point typedefs
 typedef float f32;
 typedef double f64;
-
-} // namespace ms
 
 #endif

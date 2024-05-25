@@ -1,7 +1,8 @@
 #include "CLIDebugDisplay.hpp"
+#include "CLIDisplay.hpp"
 
 int main() {
-  ms::Board board(ms::Vector2u(8, 7), ms::Board::HARD);
-  cli::DebugDisplay debug(board);
+  ms::Board board;
+  cli::Display debug(board);
   debug.display();
 }

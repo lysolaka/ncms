@@ -3,14 +3,14 @@
 
 namespace cli {
 void DebugDisplay::display() const {
-  for (ms::u16 i = 0; i < board.getWidth(); i++)
+  for (u16 i = 0; i < board.getWidth(); i++)
     std::cout << "    " << i;
 
   std::cout << '\n';
 
-  for (ms::u16 y = 0; y < board.getHeight(); y++) {
+  for (u16 y = 0; y < board.getHeight(); y++) {
     std::cout << y << ' ';
-    for (ms::u16 x = 0; x < board.getWidth(); x++) {
+    for (u16 x = 0; x < board.getWidth(); x++) {
       std::cout << '[';
       displayField(ms::Vector2u(x, y));
       std::cout << ']';
