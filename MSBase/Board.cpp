@@ -188,6 +188,10 @@ void Board::updateGameState() {
     state = FINISHED_WIN;
 }
 
+void Board::forceEndGame() {
+  state = FINISHED_LOSS;
+}
+
 void Board::revealAllMines() {
   for (u16 x = 0; x < storage.size.x; x++) {
     for (u16 y = 0; y < storage.size.y; y++) {
@@ -195,5 +199,9 @@ void Board::revealAllMines() {
         storage[x, y].isRevealed = true;
     }
   }
+}
+
+bool Board::isInbound(Vector2u const &pos) const {
+  return storage.isInbound(pos);
 }
 } // namespace ms

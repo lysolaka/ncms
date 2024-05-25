@@ -28,6 +28,10 @@ ifeq ($(DISPLAY), cli_both)
 	SRC += CLIDisplay.cpp
 endif
 
+ifeq ($(CONTROLLER), cli)
+	SRC += CLIController.cpp
+endif
+
 # Objects
 OBJ := $(patsubst %.cpp, $(OBJDIR)/%.o, $(SRC))
 
