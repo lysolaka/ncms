@@ -3,7 +3,7 @@
 #include <iostream>
 
 namespace cli {
-Controller::Controller(ms::Board &_board, ms::DisplayBase const &_display)
+Controller::Controller(ms::Board &_board, ms::DisplayBase &_display)
     : ms::ControllerBase(_board, _display), action(HELP), status(OK),
       pos(-1, -1) {}
 

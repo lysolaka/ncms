@@ -6,7 +6,7 @@
 namespace cli {
 class Controller : public ms::ControllerBase {
 public:
-  Controller(ms::Board &_board, ms::DisplayBase const &_display);
+  Controller(ms::Board &_board, ms::DisplayBase &_display);
   void play();
 
 private:
