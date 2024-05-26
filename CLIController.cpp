@@ -63,6 +63,7 @@ void Controller::play() {
     std::cout << "You won, NICE!\n";
     break;
   case ms::Board::FINISHED_LOSS:
+    display.display();
     std::cout << "You lost, better luck next time!\n";
     break;
   default:

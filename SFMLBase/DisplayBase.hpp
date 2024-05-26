@@ -1,4 +1,5 @@
 #include "../MSBase/DisplayBase.hpp"
+#include "../MSBase/MSBits/Vector.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -18,6 +19,7 @@ protected:
   } assets;
 
   f32 logicalRectSize;
+  ms::Vector2<f32> textOffset;
 
 public:
   static const u32 windowSize = 800;
