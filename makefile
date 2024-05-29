@@ -15,29 +15,28 @@ PPFLAGS := -IMSBase/MSBits/ -IMSBase/ -MMD -MP
 SRC := main.cpp
 SRC += $(wildcard MSBase/*.cpp)
 
-ifeq ($(SFML), true)
-	SRC += $(wildcard SFMLBase/*.cpp)
-endif
-
 ifeq ($(DISPLAY), cli_debug)
 	SRC += CLIDebugDisplay.cpp
-endif
-
-ifeq ($(DISPLAY), cli)
+else ifeq ($(DISPLAY), cli)
 	SRC += CLIDisplay.cpp
-endif
-
-ifeq ($(DISPLAY), cli_both)
+else ifeq ($(DISPLAY), cli_both)
 	SRC += CLIDebugDisplay.cpp
 	SRC += CLIDisplay.cpp
-endif
-
-ifeq ($(DISPLAY), sfml_debug)
+else ifeq ($(DISPLAY), sfml_debug)
 	SRC += SFMLDebugDisplay.cpp
+else ifeq ($(DISPLAY), sfml)
+	SRC += SFMLDisplay.cpp
+else
+	SRC += $(wildcard *Display.cpp)
+	SFML := true
 endif
 
 ifeq ($(CONTROLLER), cli)
 	SRC += CLIController.cpp
+endif
+
+ifeq ($(SFML), true)
+	SRC += $(wildcard SFMLBase/*.cpp)
 endif
 
 # Objects
