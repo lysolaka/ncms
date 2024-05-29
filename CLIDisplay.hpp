@@ -19,7 +19,7 @@ namespace cli {
 class Display : public ms::DisplayBase {
 public:
   using ms::DisplayBase::DisplayBase;
-  void display() const;
+  void display();
 
 private:
   void displayField(ms::Vector2u const &pos) const;

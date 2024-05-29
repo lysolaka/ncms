@@ -2,7 +2,7 @@
 #include <iostream>
 
 namespace cli {
-void Display::display() const {
+void Display::display() {
   std::cout << ' ';
   for (u16 i = 0; i < board.getWidth(); i++)
     std::cout << "  " << i;
