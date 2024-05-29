@@ -1,4 +1,4 @@
-#include "SFMLBase/DisplayBase.hpp"
+#include "../SFMLBase/DisplayBase.hpp"
 
 #ifndef SFML_DISPLAY_HPP
 #define SFML_DISPLAY_HPP

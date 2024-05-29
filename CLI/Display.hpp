@@ -1,4 +1,4 @@
-#include "MSBase/DisplayBase.hpp"
+#include "../MSBase/DisplayBase.hpp"
 
 #ifndef CLI_DISPLAY_HPP
 #define CLI_DISPLAY_HPP

@@ -1,5 +1,4 @@
-#include "SFMLDisplay.hpp"
-
+#include "Display.hpp"
 
 namespace sfl {
 void Display::display() {

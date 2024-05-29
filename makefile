@@ -1,6 +1,8 @@
 # General
 OBJDIR := obj
 BINDIR := bin
+CLIDIR := CLI
+SFMLDIR := SFML
 
 EXE := $(BINDIR)/minesweeper
 
@@ -9,30 +11,34 @@ CXX := g++
 CXXFLAGS := -std=c++23
 LDFLAGS :=
 
-PPFLAGS := -IMSBase/MSBits/ -IMSBase/ -MMD -MP
+PPFLAGS := -IMSBase/MSBits/ -IMSBase/ -ICLI/ -ISFML/ -MMD -MP
 
 # Sources
 SRC := main.cpp
 SRC += $(wildcard MSBase/*.cpp)
 
 ifeq ($(DISPLAY), cli_debug)
-	SRC += CLIDebugDisplay.cpp
+	SRC += $(CLIDIR)/DebugDisplay.cpp
 else ifeq ($(DISPLAY), cli)
-	SRC += CLIDisplay.cpp
+	SRC += $(CLIDIR)/Display.cpp
 else ifeq ($(DISPLAY), cli_both)
-	SRC += CLIDebugDisplay.cpp
-	SRC += CLIDisplay.cpp
+	SRC += $(CLIDIR)/DebugDisplay.cpp
+	SRC += $(CLIDIR)/Display.cpp
 else ifeq ($(DISPLAY), sfml_debug)
-	SRC += SFMLDebugDisplay.cpp
+	SRC += $(SFMLDIR)/DebugDisplay.cpp
 else ifeq ($(DISPLAY), sfml)
-	SRC += SFMLDisplay.cpp
+	SRC += $(SFMLDIR)/Display.cpp
+else ifeq ($(DISPLAY), sfml_both)
+	SRC += $(SFMLDIR)/DebugDisplay.cpp
+	SRC += $(SFMLDIR)/Display.cpp
 else
-	SRC += $(wildcard *Display.cpp)
+	SRC += $(wildcard $(CLIDIR)/*Display.cpp)
+	SRC += $(wildcard $(SFMLDIR)/*Display.cpp)
 	SFML := true
 endif
 
 ifeq ($(CONTROLLER), cli)
-	SRC += CLIController.cpp
+	SRC += $(CLIDIR)/Controller.cpp
 endif
 
 ifeq ($(SFML), true)

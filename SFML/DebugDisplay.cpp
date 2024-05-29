@@ -1,4 +1,4 @@
-#include "SFMLDebugDisplay.hpp"
+#include "DebugDisplay.hpp"
 
 namespace sfl {
 void DebugDisplay::display() {

@@ -1,5 +1,4 @@
-#include "CLIController.hpp"
-#include "CLIDebugDisplay.hpp"
+#include "Controller.hpp"
 #include <iostream>
 
 namespace cli {

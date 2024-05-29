@@ -1,4 +1,4 @@
-#include "CLIDisplay.hpp"
+#include "Display.hpp"
 #include <iostream>
 
 namespace cli {

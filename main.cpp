@@ -1,6 +1,6 @@
-#include "CLIDebugDisplay.hpp"
-#include "CLIDisplay.hpp"
-#include "CLIController.hpp"
+#include "CLI/DebugDisplay.hpp"
+#include "CLI/Display.hpp"
+#include "CLI/Controller.hpp"
 
 int main() {
   ms::Board board(ms::Vector2u(8, 9), ms::Board::NORMAL);

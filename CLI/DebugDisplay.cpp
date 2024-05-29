@@ -1,4 +1,4 @@
-#include "CLIDebugDisplay.hpp"
+#include "DebugDisplay.hpp"
 #include <iostream>
 
 namespace cli {
