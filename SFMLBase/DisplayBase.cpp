@@ -2,9 +2,8 @@
 #include <cassert>
 
 namespace sfl {
-DisplayBase::DisplayBase(ms::Board const &_board)
-    : ms::DisplayBase(_board), window(sf::VideoMode(windowSize, windowSize),
-                                      "SFMLDebugDisplay", sf::Style::Close) {
+DisplayBase::DisplayBase(ms::Board const &_board, sf::RenderWindow &_window)
+    : ms::DisplayBase(_board), window(_window) {
   window.setVerticalSyncEnabled(true);
   window.setFramerateLimit(60);
 

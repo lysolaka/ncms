@@ -9,7 +9,6 @@ Controller::Controller(ms::Board &_board, ms::DisplayBase &_display)
 
 void Controller::play() {
   std::string move;
-
   while (board.getGameState() == ms::Board::RUNNING) {
     std::cout << '\n';
 

@@ -10,7 +10,7 @@
 namespace sfl {
 class DisplayBase : public ms::DisplayBase {
 protected:
-  sf::RenderWindow window;
+  sf::RenderWindow &window;
 
   struct {
     sf::Font textFont;
@@ -24,7 +24,7 @@ protected:
 public:
   static const u32 windowSize = 800;
 
-  DisplayBase(ms::Board const &_board);
+  DisplayBase(ms::Board const &_board, sf::RenderWindow &_window);
   const f32 getLogicalRectSize() const;
 };
 } // namespace sfl

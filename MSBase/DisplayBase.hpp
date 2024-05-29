@@ -5,13 +5,14 @@
 
 namespace ms {
 class DisplayBase {
-  protected:
-    const Board &board;
-  public:
-    DisplayBase(Board const &_board);
-    virtual void display() = 0;
-    virtual ~DisplayBase() = default;
+protected:
+  const Board &board;
+
+public:
+  DisplayBase(Board const &_board);
+  virtual void display() = 0;
+  virtual ~DisplayBase() = default;
 };
-}
+} // namespace ms
 
 #endif

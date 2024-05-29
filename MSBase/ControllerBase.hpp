@@ -9,11 +9,12 @@ class ControllerBase {
 protected:
   Board &board;
   DisplayBase &display;
+
 public:
   ControllerBase(Board &_board, DisplayBase &_display);
   virtual void play() = 0;
-  ~ControllerBase() = default;
+  virtual ~ControllerBase() = default;
 };
-}
+} // namespace ms
 
 #endif
