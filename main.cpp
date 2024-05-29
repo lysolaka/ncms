@@ -1,10 +1,13 @@
-#include "CLI/DebugDisplay.hpp"
-#include "CLI/Display.hpp"
-#include "CLI/Controller.hpp"
+#include "MSBase/Board.hpp"
+#include "SFML/Controller.hpp"
+#include "SFML/DebugDisplay.hpp"
 
 int main() {
-  ms::Board board(ms::Vector2u(8, 9), ms::Board::NORMAL);
-  cli::Display debug(board);
-  cli::Controller ctrl(board, debug);
-  ctrl.play();
+  ms::Board *board = new ms::Board(ms::Vector2u(8, 9), ms::Board::NORMAL);
+  sf::RenderWindow *win = new sf::RenderWindow(
+      sf::VideoMode(sfl::DisplayBase::windowSize, sfl::DisplayBase::windowSize),
+      "Minesweeper", sf::Style::Close);
+  sfl::DisplayBase *display = new sfl::DebugDisplay(*board, *win);
+  sfl::ControllerBase *ctrl = new sfl::Controller(*board, *display, *win);
+  ctrl->play();
 }
