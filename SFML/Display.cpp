@@ -2,8 +2,6 @@
 
 namespace sfl {
 void Display::display() {
-  window.clear(sf::Color::Black);
-
   char fieldInfo;
   for (u16 y = 0; y < board.getHeight(); y++) {
     for (u16 x = 0; x < board.getWidth(); x++) {
@@ -58,7 +56,5 @@ void Display::display() {
       }
     }
   }
-
-  window.display();
 }
 } // namespace sfl

@@ -22,6 +22,4 @@ DisplayBase::DisplayBase(ms::Board const &_board, sf::RenderWindow &_window)
   textOffset.x = (logicalRectSize - 4.f) / 5;
   textOffset.y = (logicalRectSize - 4.f) / 7;
 }
-
-const f32 DisplayBase::getLogicalRectSize() const { return logicalRectSize; }
 } // namespace sfl

@@ -41,6 +41,10 @@ ifeq ($(CONTROLLER), cli)
 	SRC += $(CLIDIR)/Controller.cpp
 endif
 
+ifeq ($(CONTROLLER), sfml)
+	SRC += $(SFMLDIR)/Controller.cpp
+endif
+
 ifeq ($(SFML), true)
 	SRC += $(wildcard SFMLBase/*.cpp)
 endif

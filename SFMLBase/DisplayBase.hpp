@@ -25,7 +25,6 @@ public:
   static const u32 windowSize = 800;
 
   DisplayBase(ms::Board const &_board, sf::RenderWindow &_window);
-  const f32 getLogicalRectSize() const;
 };
 } // namespace sfl
 
