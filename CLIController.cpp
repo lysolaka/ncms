@@ -3,13 +3,12 @@
 #include <iostream>
 
 namespace cli {
-Controller::Controller(ms::Board &_board, ms::DisplayBase const &_display)
+Controller::Controller(ms::Board &_board, ms::DisplayBase &_display)
     : ms::ControllerBase(_board, _display), action(HELP), status(OK),
       pos(-1, -1) {}
 
 void Controller::play() {
   std::string move;
-
   while (board.getGameState() == ms::Board::RUNNING) {
     std::cout << '\n';
 
@@ -63,6 +62,7 @@ void Controller::play() {
     std::cout << "You won, NICE!\n";
     break;
   case ms::Board::FINISHED_LOSS:
+    display.display();
     std::cout << "You lost, better luck next time!\n";
     break;
   default:
