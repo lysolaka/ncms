@@ -3,7 +3,7 @@
 #include "SFML/DebugDisplay.hpp"
 
 int main() {
-  ms::Board *board = new ms::Board(ms::Vector2u(8, 9), ms::Board::NORMAL);
+  ms::Board *board = new ms::Board(ms::Vector2u(10, 10), ms::Board::NORMAL);
   sf::RenderWindow *win = new sf::RenderWindow(
       sf::VideoMode(sfl::DisplayBase::windowSize, sfl::DisplayBase::windowSize),
       "Minesweeper", sf::Style::Close);

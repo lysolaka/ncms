@@ -28,7 +28,7 @@ void Controller::play() {
     if (action == HELP) {
       std::cout << "Syntax: <command> [column] [row]\n"
                 << "Commands:\nr - Reveal field,\n"
-                << "f - Flag field,\n"
+                << "f - Toggle flag,\n"
                 << "h - Display help,\n"
                 << "q - Force quit.\n";
     }
