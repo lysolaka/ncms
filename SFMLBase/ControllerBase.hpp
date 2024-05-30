@@ -14,7 +14,7 @@ protected:
   f32 logicalRectSize;
 
 public:
-  ControllerBase(ms::Board &_board, ms::DisplayBase &_display,
+  ControllerBase(ms::Board &_board, sfl::DisplayBase &_display,
                  sf::RenderWindow &_window);
 };
 } // namespace sfl

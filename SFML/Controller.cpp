@@ -53,7 +53,6 @@ void Controller::play() {
   endText.setOutlineThickness(4.f);
 
   if (board.getGameState() == ms::Board::FINISHED_LOSS) {
-    board.revealAllMines();
     endText.setString("YOU LOST");
     endText.setFillColor(sf::Color::Red);
   } else {
