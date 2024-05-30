@@ -43,7 +43,7 @@ Available targets:
 
 Usage:
 ```
-make [<target>] <options>
+$ make [<target>] <options>
 ```
 
 - When building CLI targets it is possible to enable colour support with:
