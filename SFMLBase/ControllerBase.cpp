@@ -1,7 +1,7 @@
 #include "ControllerBase.hpp"
 
 namespace sfl {
-ControllerBase::ControllerBase(ms::Board &_board, sfl::DisplayBase &_display,
+ControllerBase::ControllerBase(ms::Board &_board, ms::DisplayBase &_display,
                                sf::RenderWindow &_window)
     : ms::ControllerBase(_board, _display), window(_window) {
   u16 boardWidth = board.getWidth();
