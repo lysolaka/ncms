@@ -2,30 +2,55 @@
 
 Secret No-Compromise Minesweeper project (shhhhh)
 
+Not so secret anymore, I honestly hope people will know how to use it.
+
+For compilation instructions look at the [Compiling](https://git.kcir.pwr.edu.pl/ssztuka/ncms#compiling) section.
+
+## Instructions
+- For CLI modes, the instructions are displayed, and accessible throughout the game.
+```
+Syntax: <command> [column] [row]
+Commands:
+r - Reveal field,
+f - Toggle flag,
+h - Display help,
+q - Force quit.
+```
+- For GUI modes, the keybindings are intuitive, field selection is done by hovering the mouse over a field:
+```
+LMB - Reveal field,
+RMB - Toggle flag,
+Q - Force quit (reveal all mines and wait for the user to close the window).
+```
+
 # Compiling
-Run:
+
+- To build all targets run:
 ```
-$ make <option=value> ...
+$ make
+```
+- To build a specific taget run:
+```
+$ make <target>
+```
+Available targets:
+1. `cli` - CLI minesweeper game
+2. `cli_debug` - CLI minesweeper game with debug view
+3. `sfml` - GUI minesweeper game
+4. `sfml_debug` - GUI minesweeper game with debug view
+
+## Make options
+
+Usage:
+```
+make [<target>] <options>
 ```
 
-# Makefile options
-These features control only the compilation process and do not configure the source (for now at least)
-1. DISPLAY
-- cli - Compile only the CLIDisplay into the binary
-- cli_debug - Compile only the CLIDebugDisplay
-- cli_both - Compile both CLI displays
-- sfml - Compile only the SFMLDisplay
-- sfml_debug - Compile only the SFMLDebugDiplay
-- sfml_both - Compile both SFML displays
-- all (default) - Compile all display types (sets SFML=true)
-
-2. CONTROLLER
-- cli - Compile only the CLIController
-
-3. COLOR
-- true - Enable coloured CLI output
-- false (default) - Disable colour output
-
-4. SFML
-- true - Required if using SFML, otherwise the executable won't link
-- false (default) - Do not link against SFML libraries
+- When building CLI targets it is possible to enable colour support with:
+```
+COLOR=true
+```
+- When building any target it is possible to enable compiler optimisation with:
+```
+OPTIMISE=true
+```
