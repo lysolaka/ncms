@@ -21,10 +21,12 @@ SRC_SFMLBASE := $(wildcard $(SFMLBASEDIR)/*.cpp)
 
 SRC_CLI := $(CLIDIR)/Controller.cpp
 SRC_CLI += $(CLIDIR)/Display.cpp
+SRC_CLI += $(CLIDIR)/MainMenu.cpp
 SRC_CLI += CLI.cpp
 
 SRC_CLI_DEBUG := $(CLIDIR)/Controller.cpp
 SRC_CLI_DEBUG += $(CLIDIR)/DebugDisplay.cpp
+SRC_CLI_DEBUG += $(CLIDIR)/MainMenu.cpp
 SRC_CLI_DEBUG += CLIDebug.cpp
 
 SRC_SFML := $(SFMLDIR)/Controller.cpp
