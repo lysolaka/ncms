@@ -8,20 +8,60 @@ void MainMenu(ms::Board *board) {
 
   bool confirmed = false;
   char userInput = 'n';
-  std::cout << "Welcome to CLISweeper!\nChoose your settings:\n";
+  std::cout 
+#ifdef __USE_COLOR
+    << "\e[1;37m"
+#endif
+    << "Welcome to CLISweeper!\n" 
+#ifdef __USE_COLOR
+    << "\e[0m"
+#endif
+    << "Choose your settings:\n";
   while (!confirmed) {
     std::cout << "Current settings:\n"
-      << "Columns: " << size.x << ", Rows: " << size.y << '\n'
+#ifdef __USE_COLOR
+      << "\e[1;36m"
+#endif
+      << "Columns: " << size.x
+#ifdef __USE_COLOR
+      << "\e[0m"
+#endif
+      << ", " 
+#ifdef __USE_COLOR
+      << "\e[1;36m"
+#endif
+      << "Rows: " << size.y << '\n'
+#ifdef __USE_COLOR
+      << "\e[0m"
+#endif
       << "Difficulty: ";
     switch (diff) {
     case ms::Board::EASY:
+#ifdef __USE_COLOR
+      std::cout << "\e[1;32m";
+#endif
       std::cout << "Easy";
+#ifdef __USE_COLOR
+      std::cout << "\e[0m";
+#endif
       break;
     case ms::Board::NORMAL:
+#ifdef __USE_COLOR
+      std::cout << "\e[1;33m";
+#endif
       std::cout << "NORMAL";
+#ifdef __USE_COLOR
+      std::cout << "\e[0m";
+#endif
       break;
     case ms::Board::HARD:
+#ifdef __USE_COLOR
+      std::cout << "\e[1;31m";
+#endif
       std::cout << "HARD";
+#ifdef __USE_COLOR
+      std::cout << "\e[0m";
+#endif
       break;
     default:
       break;
