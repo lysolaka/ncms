@@ -4,13 +4,15 @@
 #include "SFML/MainMenu.hpp"
 
 int main() {
-  sf::ContextSettings con;
-  con.antialiasingLevel = 8;
-
   ms::Board *board;
-  sf::RenderWindow *win = new sf::RenderWindow(
-      sf::VideoMode(sfl::DisplayBase::windowSize, sfl::DisplayBase::windowSize),
-      "Minesweeper", sf::Style::Close, con);
+  sf::RenderWindow *win;
+  {
+    sf::ContextSettings con;
+    con.antialiasingLevel = 8;
+    win = new sf::RenderWindow(sf::VideoMode(sfl::DisplayBase::windowSize,
+                                             sfl::DisplayBase::windowSize),
+                               "Minesweeper", sf::Style::Close, con);
+  }
   {
     ms::MenuReturn ret = sfl::MainMenu(*win);
     board = new ms::Board(ret.size, ret.diff);
