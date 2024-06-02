@@ -116,7 +116,11 @@ ms::MenuReturn MainMenu(sf::RenderWindow &win) {
               diff = (ms::Board::Difficulty)(diff - 1);
           } else if (assets->diffPlusBox.contains(
                          sf::Vector2f(e.mouseButton.x, e.mouseButton.y))) {
+#ifdef __ALLOW_DEBUG
+            if (diff != ms::Board::DEBUG)
+#else
             if (diff != ms::Board::HARD)
+#endif
               diff = (ms::Board::Difficulty)(diff + 1);
           }
         }
@@ -164,6 +168,10 @@ ms::MenuReturn MainMenu(sf::RenderWindow &win) {
       assets->diffLabel.setPosition(sf::Vector2f(350.f, 478.f));
       break;
     case ms::Board::DEBUG:
+#ifdef __ALLOW_DEBUG
+      assets->diffLabel.setString("DEBUG");
+      assets->diffLabel.setPosition(sf::Vector2f(337.f, 478.f));
+#endif
       break;
     }
 

@@ -6,6 +6,15 @@ Not so secret anymore, I honestly hope people will know how to use it.
 
 For compilation instructions look at the [Compiling](https://git.kcir.pwr.edu.pl/ssztuka/ncms#compiling) section.
 
+## IMPORTANT! - Running the binary
+
+Users should run the SFML versions with the present working directory `$PWD` set to the root of the project. This is because SFML is pointed to assets in the ./assets/ directory. If one chooses to run the binary from somewhere else, they should copy the assets directory so that it will be in the `$PWD` directory.
+
+*Example: Running a binary from the project root directory*
+```
+$ ./bin/sfml_sweeper
+```
+
 ## Instructions
 - For CLI modes, the instructions are displayed, and accessible throughout the game.
 ```
@@ -53,4 +62,8 @@ COLOR=true
 - When building any target it is possible to enable compiler optimisation with:
 ```
 OPTIMISE=true
+```
+- When building any target it is possible to allow to choose the DEBUG difficulty with:
+```
+ALLOW_DEBUG_MODE=true
 ```

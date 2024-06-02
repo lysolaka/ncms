@@ -128,7 +128,7 @@ void Board::toggleFlag(Vector2u const &pos) {
 
 void Board::revealField(Vector2u const &pos) {
   if (isRevealed(pos) || !storage.isInbound(pos) || state != RUNNING ||
-      hasFlag(pos))
+      hasFlag(pos) || diff == DEBUG)
     return;
 
   if (!hasMine(pos)) {

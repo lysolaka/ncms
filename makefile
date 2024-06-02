@@ -9,7 +9,7 @@ SFMLDIR := SFML
 
 # Compiling
 CXX := g++
-CXXFLAGS := -std=c++23 -ggdb
+CXXFLAGS := -std=c++23
 LDFLAGS :=
 SFML_LDFLAGS := -lsfml-system -lsfml-window -lsfml-graphics
 
@@ -64,6 +64,10 @@ endif
 
 ifeq ($(OPTIMISE), true)
 	CXXFLAGS += -O2
+endif
+
+ifeq ($(ALLOW_DEBUG_MODE), true)
+	CXXFLAGS += -D__ALLOW_DEBUG
 endif
 
 # Rules

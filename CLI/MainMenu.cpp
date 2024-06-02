@@ -10,13 +10,13 @@ ms::MenuReturn MainMenu() {
   char userInput = 'n';
   std::cout
 #ifdef __USE_COLOR
-      << "\e[1;37m"
+            << "\e[1;37m"
 #endif
-      << "Welcome to CLISweeper!\n"
+            << "Welcome to CLISweeper!\n"
 #ifdef __USE_COLOR
-      << "\e[0m"
+            << "\e[0m"
 #endif
-      << "Choose your settings:\n";
+            << "Choose your settings:\n";
   while (!confirmed) {
     std::cout << "Current settings:\n"
 #ifdef __USE_COLOR
@@ -86,6 +86,9 @@ ms::MenuReturn MainMenu() {
                   << "1. EASY\n"
                   << "2. NORMAL\n"
                   << "3. HARD\n"
+#ifdef __ALLOW_DEBUG
+                  << "4. DEBUG\n"
+#endif
                   << ": ";
         std::cin >> userInput;
         switch (userInput) {
@@ -98,11 +101,18 @@ ms::MenuReturn MainMenu() {
         case '3':
           diff = ms::Board::HARD;
           break;
+#ifdef __ALLOW_DEBUG
+        case '4':
+          diff = ms::Board::DEBUG;
+          break;
+#endif
         default:
           break;
         }
       }
     }
   }
+
+  return ms::MenuReturn(size, diff);
 }
 } // namespace cli
