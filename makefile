@@ -9,7 +9,7 @@ SFMLDIR := SFML
 
 # Compiling
 CXX := g++
-CXXFLAGS := -std=c++23
+CXXFLAGS := -std=c++23 -ggdb
 LDFLAGS :=
 SFML_LDFLAGS := -lsfml-system -lsfml-window -lsfml-graphics
 
@@ -31,10 +31,12 @@ SRC_CLI_DEBUG += CLIDebug.cpp
 
 SRC_SFML := $(SFMLDIR)/Controller.cpp
 SRC_SFML += $(SFMLDIR)/Display.cpp
+SRC_SFML += $(SFMLDIR)/MainMenu.cpp
 SRC_SFML += SFML.cpp
 
 SRC_SFML_DEBUG := $(SFMLDIR)/Controller.cpp
 SRC_SFML_DEBUG += $(SFMLDIR)/DebugDisplay.cpp
+SRC_SFML_DEBUG += $(SFMLDIR)/MainMenu.cpp
 SRC_SFML_DEBUG += SFMLDebug.cpp
 
 # Objects
