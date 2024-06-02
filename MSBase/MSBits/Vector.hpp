@@ -13,6 +13,7 @@ struct Vector2 {
 
   Vector2() = default;
   Vector2(T _x, T _y) : x(_x), y(_y) {}
+  Vector2(Vector2 const &_V) : x(_V.x), y(_V.y) {}
 };
 
 typedef Vector2<u16> Vector2u;

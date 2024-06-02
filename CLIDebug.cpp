@@ -1,11 +1,14 @@
-#include "MSBase/Board.hpp"
-#include "CLI/DebugDisplay.hpp"
 #include "CLI/Controller.hpp"
+#include "CLI/DebugDisplay.hpp"
 #include "CLI/MainMenu.hpp"
+#include "MSBase/Board.hpp"
 
 int main() {
-  ms::Board *board = new ms::Board(ms::Vector2u(10, 10), ms::Board::NORMAL);
-  cli::MainMenu(board);
+  ms::Board *board;
+  {
+    ms::MenuReturn ret = cli::MainMenu();
+    board = new ms::Board(ret.size, ret.diff);
+  }
   ms::DisplayBase *display = new cli::DebugDisplay(*board);
   ms::ControllerBase *ctrl = new cli::Controller(*board, *display);
 
