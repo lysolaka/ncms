@@ -52,9 +52,17 @@ Board::Board(Vector2u const &_size, Difficulty _diff)
       storage[i, i].hasMine = true;
       totalMines++;
     }
-    for (u16 i; i < storage.size.y; i += 2) {
+    for (u16 i = 0; i < storage.size.y; i += 2) {
       storage[0, i].hasMine = true;
       totalMines++;
+    }
+
+    totalMines -= 2;
+
+    for (u16 x = 0; x < storage.size.x; x++) {
+      for (u16 y = 0; y < storage.size.y; y++) {
+        storage[x, y].minesAround = countMines(Vector2u(x, y));
+      }
     }
     return;
   }
@@ -128,13 +136,13 @@ void Board::toggleFlag(Vector2u const &pos) {
 
 void Board::revealField(Vector2u const &pos) {
   if (isRevealed(pos) || !storage.isInbound(pos) || state != RUNNING ||
-      hasFlag(pos) || diff == DEBUG)
+      hasFlag(pos))
     return;
 
   if (!hasMine(pos)) {
     firstMoveDone = true;
     recursiveReveal(pos);
-  } else if (firstMoveDone == false) {
+  } else if (firstMoveDone == false && diff != DEBUG) {
     firstMoveDone = true;
     bool placed = false;
     do {
@@ -188,9 +196,7 @@ void Board::updateGameState() {
     state = FINISHED_WIN;
 }
 
-void Board::forceEndGame() {
-  state = FINISHED_LOSS;
-}
+void Board::forceEndGame() { state = FINISHED_LOSS; }
 
 void Board::revealAllMines() {
   for (u16 x = 0; x < storage.size.x; x++) {
