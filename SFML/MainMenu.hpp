@@ -1,4 +1,5 @@
 #include "../MSBase/Board.hpp"
+#include "../MSBase/MenuReturn.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -7,7 +8,7 @@
 #define SFML_MAIN_MENU_HPP
 
 namespace sfl {
-void MainMenu(ms::Board *board, sf::RenderWindow &win);
+ms::MenuReturn MainMenu(sf::RenderWindow &win);
 
 struct MenuAssets {
   sf::Font textFont;

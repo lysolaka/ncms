@@ -22,7 +22,7 @@ Board::Board()
   }
 }
 
-Board::Board(Vector2u _size, Difficulty _diff)
+Board::Board(Vector2u const &_size, Difficulty _diff)
     : storage(_size), diff(_diff), firstMoveDone(false), state(RUNNING),
       totalMines(0), revealedCount(0) {
 
@@ -33,13 +33,13 @@ Board::Board(Vector2u _size, Difficulty _diff)
 
   switch (diff) {
   case EASY:
-    totalMines = roundUp(0.1f * storage.size.x * storage.size.x);
+    totalMines = roundUp(0.1f * storage.size.x * storage.size.y);
     break;
   case NORMAL:
-    totalMines = roundUp(0.2f * storage.size.x * storage.size.x);
+    totalMines = roundUp(0.2f * storage.size.x * storage.size.y);
     break;
   case HARD:
-    totalMines = roundUp(0.3f * storage.size.x * storage.size.x);
+    totalMines = roundUp(0.3f * storage.size.x * storage.size.y);
     break;
   case DEBUG:
     for (u16 i = 0; i < storage.size.x; i++) {

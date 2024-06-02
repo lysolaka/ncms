@@ -2,7 +2,7 @@
 #include <cassert>
 
 namespace sfl {
-void MainMenu(ms::Board *board, sf::RenderWindow &win) {
+ms::MenuReturn MainMenu(sf::RenderWindow &win) {
 
   ms::Vector2u size(10, 10);
   ms::Board::Difficulty diff = ms::Board::NORMAL;
@@ -174,10 +174,8 @@ void MainMenu(ms::Board *board, sf::RenderWindow &win) {
     win.display();
   }
 
-  if (board != nullptr)
-    delete board;
-  board = new ms::Board(size, diff);
-
   delete assets;
+
+  return ms::MenuReturn(size, diff);
 }
 } // namespace sfl

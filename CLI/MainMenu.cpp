@@ -2,39 +2,39 @@
 #include <iostream>
 
 namespace cli {
-void MainMenu(ms::Board *board) {
+ms::MenuReturn MainMenu() {
   ms::Vector2u size(10, 10);
   ms::Board::Difficulty diff = ms::Board::NORMAL;
 
   bool confirmed = false;
   char userInput = 'n';
-  std::cout 
+  std::cout
 #ifdef __USE_COLOR
-    << "\e[1;37m"
+      << "\e[1;37m"
 #endif
-    << "Welcome to CLISweeper!\n" 
+      << "Welcome to CLISweeper!\n"
 #ifdef __USE_COLOR
-    << "\e[0m"
+      << "\e[0m"
 #endif
-    << "Choose your settings:\n";
+      << "Choose your settings:\n";
   while (!confirmed) {
     std::cout << "Current settings:\n"
 #ifdef __USE_COLOR
-      << "\e[1;36m"
+              << "\e[1;36m"
 #endif
-      << "Columns: " << size.x
+              << "Columns: " << size.x
 #ifdef __USE_COLOR
-      << "\e[0m"
+              << "\e[0m"
 #endif
-      << ", " 
+              << ", "
 #ifdef __USE_COLOR
-      << "\e[1;36m"
+              << "\e[1;36m"
 #endif
-      << "Rows: " << size.y << '\n'
+              << "Rows: " << size.y << '\n'
 #ifdef __USE_COLOR
-      << "\e[0m"
+              << "\e[0m"
 #endif
-      << "Difficulty: ";
+              << "Difficulty: ";
     switch (diff) {
     case ms::Board::EASY:
 #ifdef __USE_COLOR
@@ -72,9 +72,9 @@ void MainMenu(ms::Board *board) {
       confirmed = true;
     else {
       std::cout << "Which setting to change?\n"
-        << "1. Size\n"
-        << "2. Difficulty\n"
-        << ": ";
+                << "1. Size\n"
+                << "2. Difficulty\n"
+                << ": ";
       std::cin >> userInput;
       if (userInput == '1') {
         std::cout << "Number of columns: ";
@@ -83,30 +83,26 @@ void MainMenu(ms::Board *board) {
         std::cin >> size.y;
       } else if (userInput == '2') {
         std::cout << "Available difficulties:\n"
-          << "1. EASY\n"
-          << "2. NORMAL\n"
-          << "3. HARD\n"
-          << ": ";
+                  << "1. EASY\n"
+                  << "2. NORMAL\n"
+                  << "3. HARD\n"
+                  << ": ";
         std::cin >> userInput;
         switch (userInput) {
-          case '1':
-            diff = ms::Board::EASY;
-            break;
-          case '2':
-            diff = ms::Board::NORMAL;
-            break;
-          case '3':
-            diff = ms::Board::HARD;
-            break;
-          default:
-            break;
+        case '1':
+          diff = ms::Board::EASY;
+          break;
+        case '2':
+          diff = ms::Board::NORMAL;
+          break;
+        case '3':
+          diff = ms::Board::HARD;
+          break;
+        default:
+          break;
         }
       }
     }
   }
-
-  if (board != nullptr)
-    delete board;
-  board = new ms::Board(size, diff);
 }
-}
+} // namespace cli
