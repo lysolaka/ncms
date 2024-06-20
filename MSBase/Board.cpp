@@ -22,7 +22,7 @@ Board::Board()
   }
 }
 
-Board::Board(Vector2u _size, Difficulty _diff)
+Board::Board(Vector2u const &_size, Difficulty _diff)
     : storage(_size), diff(_diff), firstMoveDone(false), state(RUNNING),
       totalMines(0), revealedCount(0) {
 
@@ -33,13 +33,13 @@ Board::Board(Vector2u _size, Difficulty _diff)
 
   switch (diff) {
   case EASY:
-    totalMines = roundUp(0.1f * storage.size.x * storage.size.x);
+    totalMines = roundUp(0.1f * storage.size.x * storage.size.y);
     break;
   case NORMAL:
-    totalMines = roundUp(0.2f * storage.size.x * storage.size.x);
+    totalMines = roundUp(0.2f * storage.size.x * storage.size.y);
     break;
   case HARD:
-    totalMines = roundUp(0.3f * storage.size.x * storage.size.x);
+    totalMines = roundUp(0.3f * storage.size.x * storage.size.y);
     break;
   case DEBUG:
     for (u16 i = 0; i < storage.size.x; i++) {
@@ -52,9 +52,17 @@ Board::Board(Vector2u _size, Difficulty _diff)
       storage[i, i].hasMine = true;
       totalMines++;
     }
-    for (u16 i; i < storage.size.y; i += 2) {
+    for (u16 i = 0; i < storage.size.y; i += 2) {
       storage[0, i].hasMine = true;
       totalMines++;
+    }
+
+    totalMines -= 2;
+
+    for (u16 x = 0; x < storage.size.x; x++) {
+      for (u16 y = 0; y < storage.size.y; y++) {
+        storage[x, y].minesAround = countMines(Vector2u(x, y));
+      }
     }
     return;
   }
@@ -134,7 +142,7 @@ void Board::revealField(Vector2u const &pos) {
   if (!hasMine(pos)) {
     firstMoveDone = true;
     recursiveReveal(pos);
-  } else if (firstMoveDone == false) {
+  } else if (firstMoveDone == false && diff != DEBUG) {
     firstMoveDone = true;
     bool placed = false;
     do {
@@ -188,9 +196,7 @@ void Board::updateGameState() {
     state = FINISHED_WIN;
 }
 
-void Board::forceEndGame() {
-  state = FINISHED_LOSS;
-}
+void Board::forceEndGame() { state = FINISHED_LOSS; }
 
 void Board::revealAllMines() {
   for (u16 x = 0; x < storage.size.x; x++) {

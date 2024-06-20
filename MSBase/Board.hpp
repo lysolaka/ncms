@@ -32,7 +32,7 @@ private:
 
 public:
   Board();
-  Board(Vector2u _size, Difficulty _diff);
+  Board(Vector2u const &_size, Difficulty _diff);
 
   u16 getWidth() const;
   u16 getHeight() const;

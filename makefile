@@ -21,18 +21,22 @@ SRC_SFMLBASE := $(wildcard $(SFMLBASEDIR)/*.cpp)
 
 SRC_CLI := $(CLIDIR)/Controller.cpp
 SRC_CLI += $(CLIDIR)/Display.cpp
+SRC_CLI += $(CLIDIR)/MainMenu.cpp
 SRC_CLI += CLI.cpp
 
 SRC_CLI_DEBUG := $(CLIDIR)/Controller.cpp
 SRC_CLI_DEBUG += $(CLIDIR)/DebugDisplay.cpp
+SRC_CLI_DEBUG += $(CLIDIR)/MainMenu.cpp
 SRC_CLI_DEBUG += CLIDebug.cpp
 
 SRC_SFML := $(SFMLDIR)/Controller.cpp
 SRC_SFML += $(SFMLDIR)/Display.cpp
+SRC_SFML += $(SFMLDIR)/MainMenu.cpp
 SRC_SFML += SFML.cpp
 
 SRC_SFML_DEBUG := $(SFMLDIR)/Controller.cpp
 SRC_SFML_DEBUG += $(SFMLDIR)/DebugDisplay.cpp
+SRC_SFML_DEBUG += $(SFMLDIR)/MainMenu.cpp
 SRC_SFML_DEBUG += SFMLDebug.cpp
 
 # Objects
@@ -60,6 +64,10 @@ endif
 
 ifeq ($(OPTIMISE), true)
 	CXXFLAGS += -O2
+endif
+
+ifeq ($(ALLOW_DEBUG_MODE), true)
+	CXXFLAGS += -D__ALLOW_DEBUG
 endif
 
 # Rules
